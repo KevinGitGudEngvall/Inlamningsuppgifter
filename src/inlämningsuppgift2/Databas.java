@@ -47,7 +47,7 @@ public class Databas {
     }
     
     public void checkCustomer(String input) throws IOException {
-       try (PrintWriter skriv = new PrintWriter(new BufferedWriter(new FileWriter("medlemmar.txt", true)));){
+        try (PrintWriter skriv = new PrintWriter(new BufferedWriter(new FileWriter("medlemmar.txt", true)));){
         LocalDate datum = LocalDate.now();
         int n = 0;
         int year = datum.getYear();
@@ -99,7 +99,7 @@ public class Databas {
         
         if(fylld == false){
             JOptionPane.showMessageDialog(null, input + " är inte medlem, har namngivits fel eller har fel personnummer" );
-        }
+        }   
        } catch ( NullPointerException e ){
            System.out.println("och har orsakat att fältet har element med 'null'. Kan orsaka att information och data inte kommer ut");
        } catch (Exception e){

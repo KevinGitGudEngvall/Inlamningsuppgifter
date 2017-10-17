@@ -45,6 +45,6 @@ public class testTest {
    
     TestCase.assertTrue("Den rätta siffran är 7", rättTal);
     }
-
+    
     
 }
