@@ -43,6 +43,7 @@ public class Databas {
         } catch (Exception e) {
             System.out.println("Programmet hittar inte text filen eller så har något obergipligt hänt");
         }
+        
         String s = "";
         int n = 0;
         for(int i = 0; i < C.length; i++){ 
@@ -51,7 +52,9 @@ public class Databas {
             + C[n].getPerday() + "\n";
             n++;
         }
+        
         JOptionPane.showMessageDialog(null, s);
+        
     }
     
     public void checkCustomer(String input) throws IOException {
@@ -108,11 +111,11 @@ public class Databas {
         if(fylld == false){
             JOptionPane.showMessageDialog(null, input + " är inte medlem, har namngivits fel eller har fel personnummer" );
         }   
-       } catch ( NullPointerException e ){
-           System.out.println("och har orsakat att fältet har element med 'null'. Kan orsaka att information och data inte kommer ut");
-       } catch (Exception e){
-           System.out.println("text filen hittas inte eller så har något obegripligt hänt");
-       }
+        } catch ( NullPointerException e ){
+            System.out.println("och har orsakat att fältet har element med 'null'. Kan orsaka att information och data inte kommer ut");
+        } catch (Exception e){
+            System.out.println("text filen hittas inte eller så har något obegripligt hänt");
+        }
     }
     
     
