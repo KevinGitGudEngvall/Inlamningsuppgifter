@@ -55,15 +55,15 @@ public class Databas {
         int day = datum.getDayOfMonth();
         boolean fylld = false;
         
-        
-        
         if(input == null){
             System.exit(0);
         }
         
+        input = input.trim();
+        
         while(n < C.length){
               
-            if(input.matches(C[n].getNamn()) || input.matches(C[n].getPernum())){
+            if(input.equalsIgnoreCase(C[n].getNamn()) || input.matches(C[n].getPernum())){
                 fylld = true;
                 if(C[n].getPeryear() == year){
                     JOptionPane.showMessageDialog(null, C[n].getNamn() + " är en medlem" );
