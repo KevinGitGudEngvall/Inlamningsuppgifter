@@ -37,13 +37,21 @@ public class Databas {
             C[n].setPerday(sc2.nextInt());
             
             n++;
-        } 
+        }
         } catch (InputMismatchException e) {
             System.out.println("Någon text från 'customerdata' har tagits bort eller ligger fel");
         } catch (Exception e) {
             System.out.println("Programmet hittar inte text filen eller så har något obergipligt hänt");
         }
-               
+        String s = "";
+        int n = 0;
+        for(int i = 0; i < C.length; i++){ 
+            s = s + C[n].getPernum() + ", " + C[n].getNamn() + "\n" 
+            + C[n].getPeryear() + "-"+ C[n].getPermonth() + "-"
+            + C[n].getPerday() + "\n";
+            n++;
+        }
+        JOptionPane.showMessageDialog(null, s);
     }
     
     public void checkCustomer(String input) throws IOException {
