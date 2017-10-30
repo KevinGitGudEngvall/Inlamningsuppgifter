@@ -11,11 +11,8 @@ public class GUIspel extends JFrame implements ActionListener{
     
     JPanel spelpan = new JPanel();
     
-    //JLabel empty = new JLabel();
-    
     JButton[][] bArray = new JButton[4][4];
    
-    
     int rad;
     int kolumn;
     int n = 1;
@@ -91,7 +88,6 @@ public class GUIspel extends JFrame implements ActionListener{
     int m = 2;
     String check = "1";
     boolean bröt = true;
-        System.out.println("vann() körs");
         for(i = 0; i < 4; i++){
             for(j = 0; j < 4; j++){
                 if( check.equals(bArray[i][j].getText())){
@@ -100,11 +96,9 @@ public class GUIspel extends JFrame implements ActionListener{
                     if(check.equals("16")){
                         check = "";
                     }
-                    System.out.println("rätt");
                 }     
                 if(n == m){
                     m++;
-                    System.out.println(m);
                 }     
             }
         }
@@ -116,7 +110,6 @@ public class GUIspel extends JFrame implements ActionListener{
     }
     
     public void flyttaknapp(int r, int k){
-        System.out.println(r + " " + k);
         if(!bArray[r][k].getText().equals("") ){
             if( r-1 >= 0 ){
                 if(bArray[r-1][k].getText().equals("") ){
@@ -176,61 +169,10 @@ public class GUIspel extends JFrame implements ActionListener{
         for(int r = 0; r < bArray.length; r++){
             for(int k = 0; k < bArray[r].length; k++){
                 if(bArray[r][k] == vald){
-                     System.out.printf("Rad: %d Kolumn: %d%n", r, k);
                      rad = r;
                      kolumn = k;
                 } 
             }
-        }
-        
-        
-        if(e.getSource() == bArray[0][0]){
-            System.out.println(bArray[0][0].getText());
-        }
-        if(e.getSource() == bArray[0][1]){
-            System.out.println(bArray[0][1].getText());
-        }
-        if(e.getSource() == bArray[0][2]){
-            System.out.println(bArray[0][2].getText());
-        }
-        if(e.getSource() == bArray[0][3]){
-            System.out.println(bArray[0][3].getText());
-        }
-        if(e.getSource() == bArray[1][0]){
-            System.out.println(bArray[1][0].getText());
-        }
-        if(e.getSource() == bArray[1][1]){
-            System.out.println(bArray[1][1].getText());
-        }
-        if(e.getSource() == bArray[1][2]){
-            System.out.println(bArray[1][2].getText());
-        }
-        if(e.getSource() == bArray[1][3]){
-            System.out.println(bArray[1][3].getText());
-        }
-        if(e.getSource() == bArray[2][0]){
-            System.out.println(bArray[2][0].getText());
-        }
-        if(e.getSource() == bArray[2][1]){
-            System.out.println(bArray[2][1].getText());
-        }
-        if(e.getSource() == bArray[2][2]){
-            System.out.println(bArray[2][2].getText());
-        }
-        if(e.getSource() == bArray[2][3]){
-            System.out.println(bArray[2][3].getText());
-        }
-        if(e.getSource() == bArray[3][0]){
-            System.out.println(bArray[3][0].getText());
-        }
-        if(e.getSource() == bArray[3][1]){
-            System.out.println(bArray[3][1].getText());
-        }
-        if(e.getSource() == bArray[3][2]){
-            System.out.println(bArray[3][2].getText());
-        }
-        if(e.getSource() == bArray[3][3]){
-            System.out.println(bArray[3][3].getText());
         }
         
         flyttaknapp(rad, kolumn);
