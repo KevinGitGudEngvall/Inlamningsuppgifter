@@ -1,7 +1,10 @@
 
 package inlämningsuppgift3;
 
+import java.awt.BorderLayout;
+import static java.awt.BorderLayout.*;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.*;
 import javax.swing.*;
@@ -9,17 +12,24 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class GUIspel extends JFrame implements ActionListener{
     
+    JPanel allpan = new JPanel();
     JPanel spelpan = new JPanel();
+    JPanel blandpan = new JPanel();
     
     JButton[][] bArray = new JButton[4][4];
+    JButton blandknapp = new JButton("Blanda");
    
     int rad;
     int kolumn;
+    int r = 3;
+    int k = 3;
     int n = 1;
     
     public GUIspel(){
         
-        add(spelpan);
+        add(allpan);
+        allpan.setLayout(new BorderLayout());
+        allpan.add(spelpan, CENTER);
         spelpan.setLayout(new GridLayout(4, 4));
         
         for(int i = 0; i < bArray.length; i++ ){
@@ -33,11 +43,14 @@ public class GUIspel extends JFrame implements ActionListener{
         }
         
         bArray[3][3].setBackground(Color.black);
+        bArray[3][3].setText("");
         
+        allpan.add(blandpan, SOUTH);
+        blandpan.add(blandknapp);
+        blandknapp.addActionListener(this);
         
-        
-        setLocation(600, 300);
-        setSize(600, 500);
+        setLocation(700, 100);
+        setSize(500, 500);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
@@ -49,36 +62,72 @@ public class GUIspel extends JFrame implements ActionListener{
     
     public void blanda(){
         
-        String rand[] = new String[16];
-        int i, j, n = 0;
-        for(i = 0; i < 16; i++){
-            int num = (int)(Math.random()*15+1);
-            rand[i] = String.valueOf(num);
-        }
-        for(i = 0; i < 16; i++){
-             for(j = 0; j < i; j++){
-                if( rand[i].equals(rand[j])){
-                    int num = (int)(Math.random()*16+1);
-                    rand[i] = String.valueOf(num);
-                    j=-1;
-                }
-            }
-        }
-        for(i = 0; i < 16; i++ ){
-           
-            if(rand[i].equals("16")){
-                rand[i] = rand[15];
-            }
-        } 
-        for(i = 0; i < 4; i++){
-            for(j = 0; j < 4; j++){
-                bArray[i][j].setText(rand[n]);
-                n++;
-            }
-        }
         
-        bArray[3][3].setText("");
-        
+        for(int i = 0; i < 1000; i++){
+            int num = (int)(Math.random()*4+1);
+            if(num == 1){
+                System.out.println("upp");
+                if(r-1 >= 0){
+                    System.out.println("genomfördes");
+                    JButton temp = new JButton();
+                    String s = bArray[r-1][k].getText();
+                    temp.setName(s);
+                    bArray[r-1][k].setText(bArray[r][k].getText());
+                    bArray[r][k].setText(temp.getName());
+                    bArray[r][k].setBackground(null);
+                    bArray[r-1][k].setBackground(Color.black);
+                    r -= 1;
+                    System.out.println(r + " " + k);
+                }        
+            }
+            if(num == 2){
+                System.out.println("ner");
+                if(r+1 < 4){
+                    System.out.println("genomfördes");
+                    JButton temp = new JButton();
+                    String s = bArray[r+1][k].getText();
+                    temp.setName(s);
+                    bArray[r+1][k].setText(bArray[r][k].getText());
+                    bArray[r][k].setText(temp.getName());
+                    bArray[r][k].setBackground(null);
+                    bArray[r+1][k].setBackground(Color.black);
+                    r += 1;
+                    System.out.println(r + " " + k);
+                }        
+            }
+            if(num == 3){
+                System.out.println("vänster");
+                if(k-1 >= 0){
+                    System.out.println("genomfördes");
+                    JButton temp = new JButton();
+                    String s = bArray[r][k-1].getText();
+                    temp.setName(s);
+                    bArray[r][k-1].setText(bArray[r][k].getText());
+                    bArray[r][k].setText(temp.getName());
+                    bArray[r][k].setBackground(null);
+                    bArray[r][k-1].setBackground(Color.black);
+                    k -= 1;
+                    System.out.println(r + " " + k);
+                }        
+            }
+            if(num == 4){
+                System.out.println("höger");
+                if(k+1 < 4){
+                    System.out.println("genomfördes");
+                    JButton temp = new JButton();
+                    String s = bArray[r][k+1].getText();
+                    temp.setName(s);
+                    bArray[r][k+1].setText(bArray[r][k].getText());
+                    bArray[r][k].setText(temp.getName());
+                    bArray[r][k].setBackground(null);
+                    bArray[r][k+1].setBackground(Color.black);
+                    k += 1;
+                    System.out.println(r + " " + k);
+                }        
+            }
+            System.out.println("nästa runda");
+        }
+     
     }
     
     
@@ -103,56 +152,70 @@ public class GUIspel extends JFrame implements ActionListener{
             }
         }
         if( m == 18){
-             JOptionPane.showMessageDialog(null, "Du Vann!");
-             System.exit(0);
+            for(int v = 0; v < 4; v++){ 
+                for(int w = 0; w < 4; w++){
+                    bArray[v][w].setBackground(Color.yellow);
+                    bArray[3][3].setBackground(Color.black);
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Du Vann!");
+            System.exit(0);
         }
              
     }
     
-    public void flyttaknapp(int r, int k){
-        if(!bArray[r][k].getText().equals("") ){
-            if( r-1 >= 0 ){
-                if(bArray[r-1][k].getText().equals("") ){
+    public void flyttaknapp(int ra, int ko){
+        if(!bArray[ra][ko].getText().equals("") ){
+            if( ra-1 >= 0 ){
+                if(bArray[ra-1][ko].getText().equals("") ){
                     JButton temp = new JButton();
-                    String s = bArray[r-1][k].getText();
+                    String s = bArray[ra-1][ko].getText();
                     temp.setName(s);
-                    bArray[r-1][k].setText(bArray[r][k].getText());
-                    bArray[r][k].setText(temp.getName());
-                    bArray[r][k].setBackground(Color.black);
-                    bArray[r-1][k].setBackground(null);
+                    bArray[ra-1][ko].setText(bArray[ra][ko].getText());
+                    bArray[ra][ko].setText(temp.getName());
+                    bArray[ra][ko].setBackground(Color.black);
+                    bArray[ra-1][ko].setBackground(null);
+                    r += 1;
+                    System.out.println(r + " " + k);
                 }
             }    
-            if( r+1 < 4){
-                if(bArray[r+1][k].getText().equals("")){
+            if( ra+1 < 4){
+                if(bArray[ra+1][ko].getText().equals("")){
                     JButton temp = new JButton();
-                    String s = bArray[r+1][k].getText();
+                    String s = bArray[ra+1][ko].getText();
                     temp.setName(s);
-                    bArray[r+1][k].setText(bArray[r][k].getText());
-                    bArray[r][k].setText(temp.getName());
-                    bArray[r][k].setBackground(Color.black);
-                    bArray[r+1][k].setBackground(null);
+                    bArray[ra+1][ko].setText(bArray[ra][ko].getText());
+                    bArray[ra][ko].setText(temp.getName());
+                    bArray[ra][ko].setBackground(Color.black);
+                    bArray[ra+1][ko].setBackground(null);
+                    r -= 1;
+                    System.out.println(r + " " + k);
                 }
             }
-            if( k-1 >= 0){
-                if(bArray[r][k-1].getText().equals("") ){
+            if( ko-1 >= 0){
+                if(bArray[ra][ko-1].getText().equals("") ){
                     JButton temp = new JButton();
-                    String s = bArray[r][k-1].getText();
+                    String s = bArray[ra][ko-1].getText();
                     temp.setName(s);
-                    bArray[r][k-1].setText(bArray[r][k].getText());
-                    bArray[r][k].setText(temp.getName());
-                    bArray[r][k].setBackground(Color.black);
-                    bArray[r][k-1].setBackground(null);
+                    bArray[ra][ko-1].setText(bArray[ra][ko].getText());
+                    bArray[ra][ko].setText(temp.getName());
+                    bArray[ra][ko].setBackground(Color.black);
+                    bArray[ra][ko-1].setBackground(null);
+                    k += 1;
+                    System.out.println(r + " " + k);
                 }
             }
-            if( k+1 < 4){
-                if(bArray[r][k+1].getText().equals("") ){
+            if( ko+1 < 4){
+                if(bArray[ra][ko+1].getText().equals("") ){
                     JButton temp = new JButton();
-                    String s = bArray[r][k+1].getText();
+                    String s = bArray[ra][ko+1].getText();
                     temp.setName(s);
-                    bArray[r][k+1].setText(bArray[r][k].getText());
-                    bArray[r][k].setText(temp.getName());
-                    bArray[r][k].setBackground(Color.black);
-                    bArray[r][k+1].setBackground(null);
+                    bArray[ra][ko+1].setText(bArray[ra][ko].getText());
+                    bArray[ra][ko].setText(temp.getName());
+                    bArray[ra][ko].setBackground(Color.black);
+                    bArray[ra][ko+1].setBackground(null);
+                    k -= 1;
+                    System.out.println(r + " " + k);
                 }
             }
             
@@ -173,6 +236,10 @@ public class GUIspel extends JFrame implements ActionListener{
                      kolumn = k;
                 } 
             }
+        }
+        
+        if(e.getSource() == blandknapp){
+            blanda();
         }
         
         flyttaknapp(rad, kolumn);
