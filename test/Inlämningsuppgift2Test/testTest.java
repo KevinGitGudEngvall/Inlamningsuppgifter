@@ -18,6 +18,7 @@ public class testTest {
     int summa = a + b;
     
     TestCase.assertEquals(5, summa);
+    
     }
     
     @Test

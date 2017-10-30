@@ -44,7 +44,7 @@ public class Databas {
             System.out.println("Programmet hittar inte text filen eller så har något obergipligt hänt");
         }
         
-        String s = "";
+       /* String s = "";
         int n = 0;
         for(int i = 0; i < C.length; i++){ 
             s = s + C[n].getPernum() + ", " + C[n].getNamn() + "\n" 
@@ -54,7 +54,7 @@ public class Databas {
         }
         
         JOptionPane.showMessageDialog(null, s);
-        
+        */
     }
     
     public void checkCustomer(String input) throws IOException {
