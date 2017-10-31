@@ -4,7 +4,6 @@ package inlämningsuppgift3;
 import java.awt.BorderLayout;
 import static java.awt.BorderLayout.*;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.*;
 import javax.swing.*;
