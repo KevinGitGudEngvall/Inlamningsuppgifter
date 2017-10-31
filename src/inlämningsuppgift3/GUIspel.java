@@ -66,9 +66,7 @@ public class GUIspel extends JFrame implements ActionListener{
         for(int i = 0; i < 1000; i++){
             int num = (int)(Math.random()*4+1);
             if(num == 1){
-                System.out.println("upp");
                 if(r-1 >= 0){
-                    System.out.println("genomfördes");
                     JButton temp = new JButton();
                     String s = bArray[r-1][k].getText();
                     temp.setName(s);
@@ -77,13 +75,10 @@ public class GUIspel extends JFrame implements ActionListener{
                     bArray[r][k].setBackground(null);
                     bArray[r-1][k].setBackground(Color.black);
                     r -= 1;
-                    System.out.println(r + " " + k);
                 }        
             }
             if(num == 2){
-                System.out.println("ner");
                 if(r+1 < 4){
-                    System.out.println("genomfördes");
                     JButton temp = new JButton();
                     String s = bArray[r+1][k].getText();
                     temp.setName(s);
@@ -92,13 +87,10 @@ public class GUIspel extends JFrame implements ActionListener{
                     bArray[r][k].setBackground(null);
                     bArray[r+1][k].setBackground(Color.black);
                     r += 1;
-                    System.out.println(r + " " + k);
                 }        
             }
             if(num == 3){
-                System.out.println("vänster");
                 if(k-1 >= 0){
-                    System.out.println("genomfördes");
                     JButton temp = new JButton();
                     String s = bArray[r][k-1].getText();
                     temp.setName(s);
@@ -107,13 +99,10 @@ public class GUIspel extends JFrame implements ActionListener{
                     bArray[r][k].setBackground(null);
                     bArray[r][k-1].setBackground(Color.black);
                     k -= 1;
-                    System.out.println(r + " " + k);
                 }        
             }
             if(num == 4){
-                System.out.println("höger");
                 if(k+1 < 4){
-                    System.out.println("genomfördes");
                     JButton temp = new JButton();
                     String s = bArray[r][k+1].getText();
                     temp.setName(s);
@@ -122,10 +111,8 @@ public class GUIspel extends JFrame implements ActionListener{
                     bArray[r][k].setBackground(null);
                     bArray[r][k+1].setBackground(Color.black);
                     k += 1;
-                    System.out.println(r + " " + k);
                 }        
             }
-            System.out.println("nästa runda");
         }
      
     }
@@ -176,7 +163,6 @@ public class GUIspel extends JFrame implements ActionListener{
                     bArray[ra][ko].setBackground(Color.black);
                     bArray[ra-1][ko].setBackground(null);
                     r += 1;
-                    System.out.println(r + " " + k);
                 }
             }    
             if( ra+1 < 4){
@@ -189,7 +175,6 @@ public class GUIspel extends JFrame implements ActionListener{
                     bArray[ra][ko].setBackground(Color.black);
                     bArray[ra+1][ko].setBackground(null);
                     r -= 1;
-                    System.out.println(r + " " + k);
                 }
             }
             if( ko-1 >= 0){
@@ -202,7 +187,6 @@ public class GUIspel extends JFrame implements ActionListener{
                     bArray[ra][ko].setBackground(Color.black);
                     bArray[ra][ko-1].setBackground(null);
                     k += 1;
-                    System.out.println(r + " " + k);
                 }
             }
             if( ko+1 < 4){
@@ -215,7 +199,6 @@ public class GUIspel extends JFrame implements ActionListener{
                     bArray[ra][ko].setBackground(Color.black);
                     bArray[ra][ko+1].setBackground(null);
                     k -= 1;
-                    System.out.println(r + " " + k);
                 }
             }
             
