@@ -113,7 +113,7 @@ public class GUIspel extends JFrame implements ActionListener{
                 }        
             }
         }
-     
+        
     }
     
     

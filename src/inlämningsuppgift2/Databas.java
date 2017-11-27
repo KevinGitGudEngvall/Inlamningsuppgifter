@@ -14,11 +14,11 @@ public class Databas {
     public Databas(){};
     
     
-    public void läserFil(File data) throws IOException{
-        try (Scanner sc = new Scanner(data);){
+    public String läserFil(File data) throws IOException{
         
         int n = 0;
         
+        try (Scanner sc = new Scanner(data);){
         
         while(sc.hasNext()){
             
@@ -37,7 +37,11 @@ public class Databas {
             C[n].setPerday(sc2.nextInt());
             
             n++;
+           
         }
+        
+        
+        
         } catch (InputMismatchException e) {
             System.out.println("Någon text från 'customerdata' har tagits bort eller ligger fel");
         } catch (Exception e) {
@@ -55,16 +59,19 @@ public class Databas {
         
         JOptionPane.showMessageDialog(null, s);
         */
+        String personsDatum = C[4].getPeryear() + "-" + C[4].getPermonth() + "-" + C[4].getPerday(); 
+       
+        return personsDatum;
     }
     
-    public void checkCustomer(String input) throws IOException {
+    public boolean checkCustomer(String input) throws IOException {
+        boolean fylld = false;
         try (PrintWriter skriv = new PrintWriter(new BufferedWriter(new FileWriter("medlemmar.txt", true)));){
         LocalDate datum = LocalDate.now();
         int n = 0;
         int year = datum.getYear();
         int month = datum.getMonthValue();
         int day = datum.getDayOfMonth();
-        boolean fylld = false;
         
         if(input == null){
             System.exit(0);
@@ -116,6 +123,9 @@ public class Databas {
         } catch (Exception e){
             System.out.println("text filen hittas inte eller så har något obegripligt hänt");
         }
+        
+        return fylld;
+        
     }
     
     

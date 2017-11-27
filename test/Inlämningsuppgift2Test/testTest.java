@@ -1,51 +1,109 @@
 
 package Inlämningsuppgift2Test;
 
+import inlämningsuppgift2.Customer;
+import inlämningsuppgift2.Databas;
+import inlämningsuppgift2.Inlämningsuppgift2;
+import java.io.File;
 import javax.swing.JOptionPane;
 import junit.framework.TestCase;
 import org.junit.Test;
+import org.junit.Before;
 
 public class testTest {
     
+    Inlämningsuppgift2 InLäm;
+    Databas Da = new Databas();
+    Customer C = new Customer();
     
+    @Before
+    public void setUp() throws Exception{
+        InLäm = new Inlämningsuppgift2();
+    }
     
     @Test
-    public final void littlemathTest() {
+    public void fileExist() throws Exception {
+    
+        File data = new File("customerdata.txt");
         
-    String s = JOptionPane.showInputDialog("2 + ? = 5 [Vad ska ? vara]");       
-    int a = Integer.parseInt(s);
-    int b = 2;
-    int summa = a + b;
-    
-    TestCase.assertEquals(5, summa);
-    
-    }
-    
-    @Test
-    public final void littleStringTest() {
+        TestCase.assertTrue(data.exists());
         
-    String a = JOptionPane.showInputDialog("skriv detta namn precis som det står? [Kevin]");
-    String b = "Kevin";
-    
-    TestCase.assertEquals("Du skrev inte likadant", b, a);
-    
     
     }
     
     @Test
-    public final void littletrueTest() {
-    boolean rättTal = false;    
+    public void fileExistNot() throws Exception {
     
-    String s = JOptionPane.showInputDialog("Vilken av siffrorna 1 till 10 är rätt? [GISSA] ");
+        File data = new File("customerdatahgfhj.txt");
+        
+        TestCase.assertFalse(data.exists());
+        
     
-    int i = Integer.parseInt(s);
-   
-    if(i == 7){
-        rättTal = true;
     }
-   
-    TestCase.assertTrue("Den rätta siffran är 7", rättTal);
+    
+    @Test
+    public void cameOutRight() throws Exception {
+        
+        
+        File data = new File("customerdata.txt");
+       
+        String femtePersonsDatum = Da.läserFil(data);
+        
+        
+        TestCase.assertTrue(femtePersonsDatum.equals("2008-4-7"));
+    
     }
+    
+    @Test
+    public void cameOutWrong() throws Exception {
+        
+        
+        File data = new File("customerdata.txt");
+       
+        String femtePersonsDatum = Da.läserFil(data);
+        
+        
+        TestCase.assertFalse(femtePersonsDatum.equals("2008-04-07"));
+    
+    }
+    
+    
+    
+    
+    @Test
+    public void giveMeRight() throws Exception {
+        
+        File data = new File("customerdata.txt");
+       
+        Da.läserFil(data);
+        
+        String inNamn = "Bear Belle";
+       
+        boolean fickNågot = Da.checkCustomer(inNamn);
+        
+        
+        TestCase.assertEquals(true, fickNågot);
+        
+    
+    }
+    
+    @Test
+    public void giveMeWrong() throws Exception {
+        
+        File data = new File("customerdata.txt");
+       
+        Da.läserFil(data);
+        
+        String inNamn = "Bea Belle";
+       
+        boolean fickNågot = Da.checkCustomer(inNamn);
+        
+        
+        TestCase.assertEquals(false, fickNågot);
+        
+    
+    }
+    
     
     
 }

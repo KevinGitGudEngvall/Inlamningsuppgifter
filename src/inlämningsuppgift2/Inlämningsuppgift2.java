@@ -15,8 +15,10 @@ public class Inlämningsuppgift2 {
         
         Databas D = new Databas();
         
-        D.läserFil(data);
+        String check = D.läserFil(data);
 
+        System.out.println(check);
+        
         D.checkCustomer(JOptionPane.showInputDialog("Skriv personens hel namn eller personnummer"));
         
     }
